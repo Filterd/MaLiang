@@ -330,6 +330,10 @@ open class Canvas: MetalView {
         currentBrush.renderEnded(at: pan, on: self)
         data.finishCurrentElement()
         actionObservers.canvas(self, didFinishLineAt: pan.point, force: pan.force)
+        
+        // Added by for dfx purposes - clears the display again and updates the mask
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "maskUpdated"), object: self)
+        clear(display: false)
     }
     
     public func firstAvaliablePan(from touches: Set<UITouch>) -> Pan? {
