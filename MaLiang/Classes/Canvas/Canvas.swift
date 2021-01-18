@@ -303,6 +303,10 @@ open class Canvas: MetalView {
     
     // MARK: - Touches
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        // DFX specific change - this re-renders the testure while the screen is being pressed
+        redraw()
+        
         guard let pan = firstAvaliablePan(from: touches) else {
             return
         }
